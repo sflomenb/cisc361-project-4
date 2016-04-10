@@ -34,7 +34,7 @@ int t_create(void (*fct)(int), int id, int pri)
 /***
   uc->uc_stack.ss_sp = mmap(0, sz,
        PROT_READ | PROT_WRITE | PROT_EXEC,
-       MAP_PRIVATE | MAP_ANON, -1, 0);
+       MAP_PRIVATE | MAP_ANOSN, -1, 0);
 ***/
   uc->uc_stack.ss_sp = malloc(sz);  /* new statement */
   uc->uc_stack.ss_size = sz;
@@ -44,7 +44,6 @@ int t_create(void (*fct)(int), int id, int pri)
   ready = uc;
 }
 
-void t_terminate()
-{
+void t_terminate(){
   
 }

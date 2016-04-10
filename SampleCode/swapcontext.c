@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
   uc.uc_link = &back; 
 
-  makecontext(uc, assign, 2, 107L, &value);
+  makecontext(&uc, assign, 2, 107L, &value);
   printf("in main(): 0\n");
 
   swapcontext(&back, &uc);
@@ -50,7 +50,7 @@ int main(int argc, char **argv)
   printf("in main(): 2\n");
   swapcontext(&back, &uc);
 
-  printf("done %d\n", value);
+  printf("done %d \n", value);
 
   return (0);
 }

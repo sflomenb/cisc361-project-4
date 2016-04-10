@@ -3,36 +3,42 @@
 CC = gcc
 CFLAGS = -g
 
-LIBOBJS = t_lib.o 
+LIBOBJS = ud_thread.o
 
-TSTOBJS = test00.o 
+TSTOBJS = T1.o T1x.o
 
 # specify the executable 
 
-EXECS = test00
+EXECS = T1 T1x
 
 # specify the source files
 
-LIBSRCS = t_lib.c
+LIBSRCS = ud_thread.c 
 
-TSTSRCS = test00.c
+TSTSRCS = T1.c T1x.c
 
 # ar creates the static thread library
 
-t_lib.a: ${LIBOBJS} Makefile
-	ar rcs t_lib.a ${LIBOBJS}
+ud_thread.a: ${LIBOBJS} Makefile
+	ar rcs ud_thread.a ${LIBOBJS}
 
 # here, we specify how each file should be compiled, what
 # files they depend on, etc.
 
-t_lib.o: t_lib.c t_lib.h Makefile
-	${CC} ${CFLAGS} -c t_lib.c
+ud_thead.o: ud_thread.c ud_thread.h Makefile
+	${CC} ${CFLAGS} -c ud_thead.c
 
-test00.o: test00.c ud_thread.h Makefile
-	${CC} ${CFLAGS} -c test00.c
+T1.o: T1.c ud_thread.h Makefile
+	${CC} ${CFLAGS} -c T1.c
 
-test00: test00.o t_lib.a Makefile
-	${CC} ${CFLAGS} test00.o t_lib.a -o test00
+T1: T1.o ud_thread.a Makefile
+	${CC} ${CFLAGS} T1.o ud_thread.a -o T1
+
+T1x.o: T1x.c ud_thread.h Makefile
+	${CC} ${CFLAGS} -c T1x.c
+
+T1x: T1x.o ud_thread.a Makefile
+	${CC} ${CFLAGS} T1x.o ud_thread.a -o T1x
 
 clean:
-	rm -f t_lib.a ${EXECS} ${LIBOBJS} ${TSTOBJS} 
+	rm -f ud_thread.a ${EXECS} ${LIBOBJS} ${TSTOBJS} 
