@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "ud_thread.h"
 
-void function(int thr_id) 
+void function(int thr_id)
 {
    int i, j;
 
@@ -29,10 +29,10 @@ int main(void)
    printf("This is main(2)...\n");
    t_create(function, 3, 1);
 
-   for (i = 0; i < 4; i++) {
-      printf("This is main(3)[%d]...\n", i);
-      t_yield();
-   }
+  for (i = 0; i < 4; i++) {
+    printf("This is main(3)[%d]...\n", i);
+    t_yield();
+  }
 
    printf("Begin shutdown...\n");
    t_shutdown();
